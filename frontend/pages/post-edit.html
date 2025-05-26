@@ -4,8 +4,9 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Editar Post</title>
-  <link rel="stylesheet" href="../assets/css/style.css" />
-  <link rel="stylesheet" href="../assets/css/post-edit.css" />
+  <base href="/front-vercel/" />
+  <link rel="stylesheet" href="frontend/assets/css/style.css" />
+  <link rel="stylesheet" href="frontend/assets/css/post-edit.css" />
 </head>
 <body>
   <div id="toast-container" aria-live="polite" aria-atomic="true"></div>
@@ -16,13 +17,13 @@
       <textarea id="content" name="content" placeholder="Conteúdo" required></textarea>
       <div class="form-actions">
         <button type="submit" class="btn btn-primary">Salvar</button>
-        <a href="/frontend/pages/dashboard.html" class="btn btn-link">Voltar</a>
+        <a href="frontend/pages/dashboard.html" class="btn btn-link">Voltar</a>
       </div>
     </form>
   </main>
 
-  <script type="module" src="../../js/posts.js"></script>
-  <script type="module" src="../../js/dashboard.js"></script>
+  <script type="module" src="js/posts.js"></script>
+  <script type="module" src="js/dashboard.js"></script>
   <script type="module">
     loadEditPost();
   </script>
