@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Editar Post</title>
+  <link rel="stylesheet" href="../assets/css/style.css">
+  <link rel="stylesheet" href="../assets/css/post-edit.css">
+</head>
+<body>
+  <div id="toast-container" aria-live="polite" aria-atomic="true"></div>
+  <main class="edit-container">
+    <h1>Editar Post</h1>
+    <form id="edit-post" class="edit-form">
+      <input type="text" id="title" name="title" placeholder="Título" required />
+      <textarea id="content" name="content" placeholder="Conteúdo" required></textarea>
+      <div class="form-actions">
+        <button type="submit" class="btn btn-primary">Salvar</button>
+        <a href="dashboard.html" class="btn btn-link">Voltar</a>
+      </div>
+    </form>
+  </main>
+
+  <script type="module" src="../../api/posts.js"></script>
+  <script type="module" src="../../api/dashboard.js"></script>
+  <script type="module">
+    loadEditPost();
+  </script>
+</body>
+</html>

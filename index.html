@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <title>Guimepa - Login e Cadastro</title>
+  <link rel="stylesheet" href="./frontend/assets/css/style.css" />
+  <link rel="stylesheet" href="./frontend/assets/css/form.css" />
+  <link rel="stylesheet" href="./frontend/assets/css/toast.css" />
+</head>
+<body>
+  <div id="toast-container" aria-live="polite" aria-atomic="true"></div>
+  <main class="auth-container">
+    <div class="auth-tabs">
+      <button id="btn-login" class="tab active">Login</button>
+      <button id="btn-register" class="tab">Cadastrar</button>
+    </div>
+
+    <section id="login-section" class="auth-form active">
+      <h2>Login</h2>
+      <form id="login-form" aria-label="Formulário de login">
+        <input type="text" name="email" placeholder="Email" required />
+        <input type="password" name="password" placeholder="Senha" required />
+        <button type="submit" class="btn-primary">Entrar</button>
+      </form>
+    </section>
+
+    <section id="register-section" class="auth-form">
+      <h2>Cadastro</h2>
+      <form id="register-form" aria-label="Formulário de cadastro">
+        <input type="text" name="name" placeholder="Nome" required />
+        <input type="text" name="email" placeholder="Email" required />
+        <input type="password" name="password" placeholder="Senha" required />
+        <button type="submit" class="btn-primary">Cadastrar</button>
+      </form>
+    </section>
+  </main>
+
+  <script type="module" src="./api/loginPage.js"></script>
+</body>
+</html>

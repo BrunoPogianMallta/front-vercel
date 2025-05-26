@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Dashboard</title>
+  <link rel="stylesheet" href="../assets/css/style.css" />
+  <link rel="stylesheet" href="../assets/css/botao_sair.css" />
+  <link rel="stylesheet" href="../assets/css/toast.css" />
+</head>
+<body>
+  <div id="toast-container" aria-live="polite" aria-atomic="true"></div>
+  <main>
+    <header style="text-align: center; margin-bottom: 20px;">
+      <h2>Dashboard</h2>
+      <div id="user-info" style="font-weight: 600;"></div>
+    </header>
+
+    <section id="create-post">
+      <h3>Criar novo post</h3>
+      <form id="post-form">
+        <input type="text" id="title" name="title" placeholder="Título" required />
+        <textarea id="content" name="content" placeholder="Conteúdo" required></textarea>
+        <button type="submit">Criar Post</button>
+      </form>
+    </section>
+
+    <section id="search-bar" style="margin-top: 30px;">
+      <input
+        type="text"
+        id="search-input"
+        placeholder="Buscar por título, autor ou ID..."
+        style="width: 100%; padding: 10px;"
+        aria-label="Buscar posts"
+      />
+    </section>
+
+    <hr />
+
+    <section id="posts-container"></section>
+  </main>
+
+  <script type="module" src="../../api/posts.js"></script>
+  <script type="module" src="../../api/dashboard.js"></script>
+</body>
+</html>
