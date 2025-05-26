@@ -1,4 +1,4 @@
-export const apiUrl = "https://backendrendeteste.onrender.com";
+export const apiUrl = "https://repositoriadamiseria.onrender.com";
 
 export const getToken = () => localStorage.getItem("token");
 export const getUserId = () => localStorage.getItem("userId");
