@@ -23,7 +23,7 @@ export function attachFormHandlers() {
 
         showToast("Login realizado com sucesso!", "success");
         setTimeout(() => {
-          window.location.href = "dashboard.html";
+          window.location.href = "/front-vercel/frontend/page/dashboard.html";
         }, 1000);
       } else {
         showToast(data.error || "Erro ao logar", "error");
