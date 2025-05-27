@@ -97,7 +97,7 @@ function renderPostCard(post) {
 
 // 🔧 Caminho relativo corrigido para GitHub Pages funcionar
 window.editPost = function (id) {
-  window.location.href = `post-edit.html?id=${id}`;
+  window.location.href = `frontend/pages/post-edit.html?id=${id}`;
 };
 
 window.deletePost = async function (id) {
@@ -153,7 +153,7 @@ window.loadEditPost = async function () {
       }
 
       alert("Post atualizado");
-      window.location.href = 'dashboard.html'; // Caminho direto da mesma pasta
+      window.location.href = 'frontend/pages/dashboard.html';
     });
   } catch (err) {
     alert("Erro ao carregar post para edição.");
