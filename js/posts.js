@@ -1,7 +1,6 @@
 import { apiUrl, getToken, getUserId, getUserName, logout } from "./config.js";
 import { showToast } from "./toast.js";
 
-
 export async function fetchPublicPosts() {
   const res = await fetch(`${apiUrl}/posts`);
   if (!res.ok) throw new Error("Erro ao buscar posts públicos");
@@ -42,12 +41,12 @@ export function loadDashboard() {
     });
 
     if (res.ok) {
-      showToast("Post criado com sucesso","success");
+      showToast("Post criado com sucesso", "success");
       setTimeout(() => {
-  location.reload();
-}, 2000);
+        location.reload();
+      }, 2000);
     } else {
-      showToast("Erro ao criar post","error");
+      showToast("Erro ao criar post", "error");
     }
   });
 
@@ -72,7 +71,7 @@ export async function listDashboardPosts(searchTerm = "") {
       ? filtered.map(renderPostCard).join("")
       : "<p>Nenhum post encontrado.</p>";
   } catch (err) {
-    showToast("Erro ao carregar posts","error");
+    showToast("Erro ao carregar posts", "error");
     console.error(err);
   }
 }
@@ -96,8 +95,9 @@ function renderPostCard(post) {
   `;
 }
 
+// 🔧 Caminho relativo corrigido para GitHub Pages funcionar
 window.editPost = function (id) {
- window.location.href = `/front-vercel/frontend/pages/post-edit.html?id=${id}`;
+  window.location.href = `post-edit.html?id=${id}`;
 };
 
 window.deletePost = async function (id) {
@@ -110,13 +110,11 @@ window.deletePost = async function (id) {
     headers: { "Authorization": `Bearer ${token}` },
   });
 
-  // alert("Post excluído");
- 
   showToast("Post excluído", "error");
 
-setTimeout(() => {
-  location.reload();
-}, 2000);
+  setTimeout(() => {
+    location.reload();
+  }, 2000);
 };
 
 window.loadEditPost = async function () {
@@ -150,13 +148,12 @@ window.loadEditPost = async function () {
       });
 
       if (!updateRes.ok) {
-        showToast("Erro ao atualizar post.","error");
+        showToast("Erro ao atualizar post.", "error");
         return;
       }
 
       alert("Post atualizado");
-      window.location.href = '/front-vercel/frontend/pages/dashboard.html';
-
+      window.location.href = 'dashboard.html'; // Caminho direto da mesma pasta
     });
   } catch (err) {
     alert("Erro ao carregar post para edição.");
