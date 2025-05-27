@@ -97,7 +97,7 @@ function renderPostCard(post) {
 }
 
 window.editPost = function (id) {
-  window.location.href = `post-edit.html?id=${id}`;
+ window.location.href = `/front-vercel/frontend/pages/post-edit.html?id=${id}`;
 };
 
 window.deletePost = async function (id) {
@@ -155,7 +155,8 @@ window.loadEditPost = async function () {
       }
 
       alert("Post atualizado");
-      window.location.href = "dashboard.html";
+      window.location.href = '/front-vercel/frontend/pages/dashboard.html';
+
     });
   } catch (err) {
     alert("Erro ao carregar post para edição.");
