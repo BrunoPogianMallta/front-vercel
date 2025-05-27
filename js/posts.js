@@ -8,6 +8,35 @@ export async function fetchPublicPosts() {
   return data.posts || data;
 }
 
+export async function likePost(postId) {
+  const token = getToken();
+  if (!token) {
+    showToast("Você precisa estar logado para curtir.", "error");
+    return;
+  }
+
+  try {
+    const res = await fetch(`${apiUrl}/posts/${postId}/like`, {
+      method: "POST",
+      headers: {
+        "Authorization": `Bearer ${token}`,
+      },
+    });
+
+    if (!res.ok) {
+      const data = await res.json();
+      throw new Error(data.error || "Erro ao curtir post");
+    }
+
+    const data = await res.json();
+    return data.likes;
+
+  } catch (error) {
+    showToast(error.message, "error");
+    console.error(error);
+  }
+}
+
 export function showLoggedUser() {
   const name = getUserName();
   const userInfo = document.getElementById("user-info");
@@ -51,6 +80,14 @@ export function loadDashboard() {
   });
 
   listDashboardPosts();
+
+  // Filtro para busca
+  const searchInput = document.getElementById("search-input");
+  if (searchInput) {
+    searchInput.addEventListener("input", (e) => {
+      listDashboardPosts(e.target.value);
+    });
+  }
 }
 
 export async function listDashboardPosts(searchTerm = "") {
@@ -81,11 +118,13 @@ function renderPostCard(post) {
   const isOwner = String(post.user_id) === userId;
 
   return `
-    <div class="card">
+    <div class="card" id="post-${post.id}">
       <h3>#${post.id} - ${post.title}</h3>
       <p><strong>Autor:</strong> ${post.user_name} (ID: ${post.user_id})</p>
       <p>${post.content}</p>
       <div class="card-actions">
+        <button onclick="handleLike(${post.id})">❤️ Curtir</button>
+        <span id="likes-count-${post.id}">${post.likes || 0}</span> curtidas
         ${isOwner ? `
           <button onclick="editPost(${post.id})">✏️ Editar</button>
           <button onclick="deletePost(${post.id})">🗑️ Excluir</button>
@@ -95,7 +134,17 @@ function renderPostCard(post) {
   `;
 }
 
-// 🔧 Caminho relativo corrigido para GitHub Pages funcionar
+// Funções globais para o HTML acessar
+
+window.handleLike = async function(postId) {
+  const newLikes = await likePost(postId);
+  if (newLikes !== undefined) {
+    const likesEl = document.getElementById(`likes-count-${postId}`);
+    if (likesEl) likesEl.textContent = newLikes;
+    showToast("Você curtiu o post!", "success");
+  }
+};
+
 window.editPost = function (id) {
   window.location.href = `frontend/pages/post-edit.html?id=${id}`;
 };
