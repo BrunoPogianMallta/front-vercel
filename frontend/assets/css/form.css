@@ -11,16 +11,24 @@ body, html {
   display: flex;
   justify-content: center;
   align-items: center;
+  padding: 2rem;
 }
 
-/* Centraliza o containe */
-.auth-container {
+
+.info-section {
+  max-width: 600px;
+  margin-bottom: 2rem;
+  color: #333;
+}
+
+.auth-section {
   background: #fff;
   border-radius: 8px;
   box-shadow: 0 10px 25px rgba(0,0,0,0.1);
   width: 360px;
   padding: 2rem;
 }
+
 
 .auth-tabs {
   display: flex;
@@ -50,22 +58,33 @@ body, html {
   color: #024ea2;
 }
 
-/* Forms */
+
+.auth-form-wrapper {
+  position: relative;
+  height: 260px; 
+  overflow: hidden;
+}
+
+
 .auth-form {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
   display: none;
+  opacity: 0;
+  transition: opacity 0.3s ease;
 }
 
 .auth-form.active {
   display: block;
+  opacity: 1;
 }
 
-.auth-form h2 {
-  margin-bottom: 1rem;
-  color: #24292e;
-  text-align: center;
-  font-weight: 600;
+.auth-form form {
+  display: flex;
+  flex-direction: column;
 }
-
 
 .auth-form input {
   width: 100%;
@@ -98,4 +117,3 @@ body, html {
 .btn-primary:hover {
   background-color: #024ea2;
 }
-

@@ -2,7 +2,7 @@
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8" />
-  <title>Guimepa - Login e Cadastro</title>
+  <title>Guimepa - Teste Técnico</title>
   <base href="/front-vercel/" />
   <link rel="stylesheet" href="frontend/assets/css/style.css" />
   <link rel="stylesheet" href="frontend/assets/css/form.css" />
@@ -10,14 +10,27 @@
 </head>
 <body>
   <div id="toast-container" aria-live="polite" aria-atomic="true"></div>
-  <main class="auth-container">
-    <div class="auth-tabs">
-      <button id="btn-login" class="tab active">Login</button>
-      <button id="btn-register" class="tab">Cadastrar</button>
-    </div>
 
+ <section class="info-section">
+  <h1>Teste Técnico Guimepa – Sistema de Blog com Autenticação</h1>
+  <ul class="info-list">
+    <li><strong>Descrição: Aplicação desenvolvida para demonstrar habilidades com PHP puro, organização de código e uso de Docker.</strong></li>
+    <li><strong>Sistema de autenticação completo (cadastro e login de usuários)</strong></li>
+    <li><strong>Funcionalidade de CRUD completo para postagens (criar, listar, editar e excluir)</strong></li>
+    <li><strong>Visualização de postagens em lista e detalhes individuais</strong></li>
+    <li><strong>Tecnologias utilizadas: PHP 8+, MySQL, Docker, Composer,JS</strong></li>
+    <li><strong>Extras: Estrutura HTML/CSS, PHPUnit para testes, migrations e documentação da API</strong></li>
+  </ul>
+</section>
+
+    <div class="auth-section">
+  <div class="auth-tabs">
+    <button id="btn-login" class="tab active">Login</button>
+    <button id="btn-register" class="tab">Cadastrar</button>
+  </div>
+
+  <div class="auth-form-wrapper">
     <section id="login-section" class="auth-form active">
-      <h2>Login</h2>
       <form id="login-form" aria-label="Formulário de login">
         <input type="text" name="email" placeholder="Email" required />
         <input type="password" name="password" placeholder="Senha" required />
@@ -26,7 +39,6 @@
     </section>
 
     <section id="register-section" class="auth-form">
-      <h2>Cadastro</h2>
       <form id="register-form" aria-label="Formulário de cadastro">
         <input type="text" name="name" placeholder="Nome" required />
         <input type="text" name="email" placeholder="Email" required />
@@ -34,7 +46,8 @@
         <button type="submit" class="btn-primary">Cadastrar</button>
       </form>
     </section>
-  </main>
+  </div>
+</div>
 
   <script type="module" src="js/loginPage.js"></script>
 </body>

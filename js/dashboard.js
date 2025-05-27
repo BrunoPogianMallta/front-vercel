@@ -1,4 +1,3 @@
-// import { getToken } from "./config.js";
 import { listDashboardPosts, loadDashboard } from "./posts.js";
 
 document.addEventListener("DOMContentLoaded", () => {

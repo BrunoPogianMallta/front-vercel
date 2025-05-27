@@ -1,4 +1,3 @@
-
 body {
   font-family: "Segoe UI", sans-serif;
   margin: 0;
@@ -19,7 +18,7 @@ section {
   padding: 0 20px;
 }
 
-/* Cardpost */
+
 .card {
   background-color: #ffffff;
   border: 1px solid #e0e0e0;
@@ -45,27 +44,77 @@ section {
   line-height: 1.5;
 }
 
+
 .card-actions {
-  margin-top: 12px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+  font-size: 14px;
+  color: #555;
+  padding-top: 8px;
+  border-top: 1px solid #eee;
+  user-select: none;
+ 
 }
 
-.card-actions button {
-  padding: 6px 12px;
-  margin-right: 8px;
+
+.action-btn {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background: none;
   border: none;
-  border-radius: 4px;
-  background-color: #007bff;
-  color: white;
-  font-weight: 500;
+  color: #385898; 
   cursor: pointer;
-  transition: background-color 0.3s ease;
+  font-weight: 600;
+  padding: 4px 8px;
+  border-radius: 4px;
+  transition: background-color 0.15s ease;
+  white-space: nowrap;
+  font-size: 14px;
 }
 
-.card-actions button:hover {
-  background-color: #0056b3;
+.action-btn svg {
+  fill: currentColor;
 }
 
-/*  post fom */
+.action-btn:hover {
+  background-color: rgba(56, 88, 152, 0.1);
+  text-decoration: none;
+}
+
+
+.owner-actions {
+  display: flex;
+  gap: 8px;
+  margin-left: auto; 
+}
+
+.owner-actions .edit-btn {
+  color: #2e7d32; 
+}
+
+.owner-actions .edit-btn:hover {
+  background-color: rgba(46, 125, 50, 0.15);
+}
+
+.owner-actions .delete-btn {
+  color: #d32f2f;
+}
+
+.owner-actions .delete-btn:hover {
+  background-color: rgba(211, 47, 47, 0.15);
+}
+
+
+.likes-count {
+  color: #444;
+  font-weight: 500;
+  white-space: nowrap;
+}
+
+
 #create-post {
   background: #ffffff;
   padding: 20px;
@@ -112,13 +161,127 @@ section {
   }
 
   #create-post button,
-  .card-actions button {
+  .card-actions button,
+  .action-btn {
     width: 100%;
     margin-bottom: 8px;
   }
 
   .card-actions {
-    display: flex;
     flex-direction: column;
+    width: 100%;
   }
+
+  .owner-actions {
+    margin-left: 0;
+    justify-content: flex-start;
+  }
+}
+
+
+.info-section {
+  max-width: 700px;
+  margin: 40px auto;
+  background: #6fcdfc;
+  border-radius: 12px;
+  color: #000000;
+  text-align: left;
+}
+
+.info-section h1 {
+  font-size: 1.8rem;
+  margin-bottom: 20px;
+  color: #007bff;
+  text-align: center;
+}
+
+.info-list {
+  list-style: none;
+  padding-left: 0;
+  margin: 0;
+}
+
+.info-list li {
+  margin-bottom: 12px;
+  font-size: 1rem;
+  line-height: 1.6;
+  padding-left: 24px;
+  position: relative;
+}
+
+.info-list li::before {
+  content: "✔️";
+  position: absolute;
+  left: 0;
+  top: 2px;
+}
+.like-btn.liked {
+  color: red;
+  font-weight: bold;
+}
+
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.dropdown-toggle {
+  background: transparent;
+  border: none;
+  font-size: 20px;
+  cursor: pointer;
+}
+
+.dropdown-menu {
+  display: none;
+  position: absolute;
+  right: 0;
+  top: 25px;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  min-width: 100px;
+  z-index: 1000;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+}
+
+.dropdown-menu button {
+  width: 100%;
+  padding: 5px 10px;
+  background: none;
+  border: none;
+  text-align: left;
+  cursor: pointer;
+}
+
+.dropdown-menu button:hover {
+  background-color: #f0f0f0;
+}
+.card {
+  position: relative; 
+}
+
+.dropdown {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+}
+
+.dropdown-toggle {
+  background: transparent;
+  border: none;
+  font-size: 20px;
+  cursor: pointer;
+  padding: 5px;
+}
+
+.dropdown-menu {
+  display: none;
+  position: absolute;
+  top: 25px;
+  right: 0;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  min-width: 100px;
+  z-index: 1000;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.2);
 }
