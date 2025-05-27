@@ -1,6 +1,7 @@
 import { apiUrl, getToken, getUserId, getUserName, logout } from "./config.js";
 import { showToast } from "./toast.js";
 
+// Busca posts públicos
 export async function fetchPublicPosts() {
   const res = await fetch(`${apiUrl}/posts`);
   if (!res.ok) throw new Error("Erro ao buscar posts públicos");
@@ -8,6 +9,7 @@ export async function fetchPublicPosts() {
   return data.posts || data;
 }
 
+// Curtir um post
 export async function likePost(postId) {
   const token = getToken();
   if (!token) {
@@ -29,7 +31,7 @@ export async function likePost(postId) {
     }
 
     const data = await res.json();
-    return data.likes;
+    return data; // { likes, action }
 
   } catch (error) {
     showToast(error.message, "error");
@@ -37,18 +39,20 @@ export async function likePost(postId) {
   }
 }
 
+// Exibe o usuário logado
 export function showLoggedUser() {
   const name = getUserName();
   const userInfo = document.getElementById("user-info");
 
   userInfo.innerHTML = `
-    <p> <strong>${name}:</strong> está logado</p>
+    <p><strong>${name}:</strong> está logado</p>
     <button id="logout-btn" style="margin-top: 10px;">Sair</button>
   `;
 
   document.getElementById("logout-btn").addEventListener("click", logout);
 }
 
+// Carrega o dashboard (form + lista de posts)
 export function loadDashboard() {
   const token = getToken();
   if (!token) return (window.location.href = "index.html");
@@ -71,25 +75,16 @@ export function loadDashboard() {
 
     if (res.ok) {
       showToast("Post criado com sucesso", "success");
-      setTimeout(() => {
-        location.reload();
-      }, 2000);
+      setTimeout(() => location.reload(), 2000);
     } else {
       showToast("Erro ao criar post", "error");
     }
   });
 
   listDashboardPosts();
-
-  // Filtro para busca
-  const searchInput = document.getElementById("search-input");
-  if (searchInput) {
-    searchInput.addEventListener("input", (e) => {
-      listDashboardPosts(e.target.value);
-    });
-  }
 }
 
+// Lista os posts do dashboard com filtro
 export async function listDashboardPosts(searchTerm = "") {
   try {
     const res = await fetch(`${apiUrl}/posts`);
@@ -107,12 +102,14 @@ export async function listDashboardPosts(searchTerm = "") {
     container.innerHTML = filtered.length > 0
       ? filtered.map(renderPostCard).join("")
       : "<p>Nenhum post encontrado.</p>";
+
   } catch (err) {
     showToast("Erro ao carregar posts", "error");
     console.error(err);
   }
 }
 
+// Renderiza o HTML de um post
 function renderPostCard(post) {
   const userId = getUserId();
   const isOwner = String(post.user_id) === userId;
@@ -134,21 +131,26 @@ function renderPostCard(post) {
   `;
 }
 
-// Funções globais para o HTML acessar
+// Funções globais para HTML acessar
 
-window.handleLike = async function(postId) {
-  const newLikes = await likePost(postId);
-  if (newLikes !== undefined) {
+// Curtir post
+window.handleLike = async function (postId) {
+  const result = await likePost(postId);
+  if (result !== undefined) {
+    const { likes, action } = result;
     const likesEl = document.getElementById(`likes-count-${postId}`);
-    if (likesEl) likesEl.textContent = newLikes;
-    showToast("Você curtiu o post!", "success");
+    if (likesEl) likesEl.textContent = likes;
+    const msg = action === "liked" ? "Você curtiu o post!" : "Você descurtiu o post!";
+    showToast(msg, "success");
   }
 };
 
+// Editar post (vai para a tela de edição)
 window.editPost = function (id) {
   window.location.href = `frontend/pages/post-edit.html?id=${id}`;
 };
 
+// Excluir post
 window.deletePost = async function (id) {
   if (!confirm("Tem certeza que deseja excluir?")) return;
 
@@ -161,11 +163,10 @@ window.deletePost = async function (id) {
 
   showToast("Post excluído", "error");
 
-  setTimeout(() => {
-    location.reload();
-  }, 2000);
+  setTimeout(() => location.reload(), 2000);
 };
 
+// Carrega post para edição
 window.loadEditPost = async function () {
   const id = new URLSearchParams(window.location.search).get("id");
   const token = getToken();
@@ -210,6 +211,7 @@ window.loadEditPost = async function () {
   }
 };
 
+// Lista todos os posts (público)
 window.listAllPosts = async function () {
   try {
     const res = await fetch(`${apiUrl}/posts`);
