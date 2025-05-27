@@ -22,6 +22,5 @@ function attachFormToggle() {
   });
 }
 
-
 attachFormToggle();
 initAuthForms();
