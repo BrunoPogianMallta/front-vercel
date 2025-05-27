@@ -1,7 +1,6 @@
 import { apiUrl } from "./config.js";
 import { showToast } from "./toast.js";
 
-const basePath = '/front-vercel';
 
 export function attachFormHandlers() {
   document.getElementById("login-form")?.addEventListener("submit", async (e) => {
@@ -25,7 +24,8 @@ export function attachFormHandlers() {
 
         showToast("Login realizado com sucesso!", "success");
         setTimeout(() => {
-          window.location.href = `${basePath}/frontend/pages/dashboard.html`;
+          window.location.href = '/front-vercel/frontend/pages/dashboard.html';
+
         }, 1000);
       } else {
         showToast(data.error || "Erro ao logar", "error");
@@ -85,7 +85,7 @@ export function initAuthForms() {
 
         showToast("Login realizado com sucesso!", "success");
         setTimeout(() => {
-          window.location.href = `${basePath}/frontend/pages/dashboard.html`;
+          window.location.href = '/front-vercel/frontend/pages/dashboard.html';
         }, 1000);
       } else {
         showToast(data.error || "Erro ao logar", "error");
